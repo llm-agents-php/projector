@@ -1,0 +1,59 @@
+{
+    "name": "llm-agents/projector",
+    "type": "library",
+    "description": "A set of tools and agents for refactoring and developing the project's codebase.",
+    "license": "MIT",
+    "homepage": "https://github.com/llm-agents-php",
+    "support": {
+        "issues": "https://github.com/llm-agents-php/projector/issues",
+        "source": "https://github.com/llm-agents-php/projector",
+        "security": "https://github.com/llm-agents-php/projector/blob/master/.github/SECURITY.md"
+    },
+    "authors": [
+        {
+            "name": "Pavel Butchnev",
+            "email": "butschster@gmail.com"
+        },
+        {
+            "name": "Aleksei Gagarin",
+            "email": "roxblnfk@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "llm-agents/agents": "^1.0"
+    },
+    "require-dev": {
+        "buggregator/trap": "^1.10",
+        "phpunit/phpunit": "^10.5",
+        "vimeo/psalm": "^5.25"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "LLM\\Projector\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LLM\\Projector\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "psalm": "psalm",
+        "psalm:baseline": "psalm --set-baseline=psalm-baseline.xml",
+        "psalm:ci": "psalm --output-format=github --shepherd --show-info=false --stats --threads=4",
+        "test": [
+            "@putenv XDEBUG_MODE=coverage",
+            "phpunit --color=always"
+        ],
+        "test:cc": [
+            "@putenv XDEBUG_MODE=coverage",
+            "phpunit --coverage-clover=runtime/phpunit/logs/clover.xml --color=always"
+        ]
+    }
+}
