@@ -1,13 +1,13 @@
 {
-    "name": "llm-agents/projector",
+    "name": "llm/assistant",
     "type": "library",
-    "description": "A set of tools and agents for refactoring and developing the project's codebase.",
+    "description": "An LLM assistant with a set of tools and agents for refactoring and developing the project's codebase.",
     "license": "MIT",
     "homepage": "https://github.com/llm-agents-php",
     "support": {
-        "issues": "https://github.com/llm-agents-php/projector/issues",
-        "source": "https://github.com/llm-agents-php/projector",
-        "security": "https://github.com/llm-agents-php/projector/blob/master/.github/SECURITY.md"
+        "issues": "https://github.com/llm-agents-php/assistant/issues",
+        "source": "https://github.com/llm-agents-php/assistant",
+        "security": "https://github.com/llm-agents-php/assistant/blob/master/.github/SECURITY.md"
     },
     "authors": [
         {
@@ -32,12 +32,12 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "LLM\\Projector\\": "src/"
+            "LLM\\Assistant\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LLM\\Projector\\Tests\\": "tests/"
+            "LLM\\Assistant\\Tests\\": "tests/"
         }
     },
     "config": {
