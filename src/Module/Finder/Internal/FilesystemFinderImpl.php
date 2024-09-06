@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace LLM\Assistant\Module\Finder\Internal;
 
 use LLM\Assistant\Config\Source;
-use LLM\Assistant\Module\Finder\Finder;
+use LLM\Assistant\Module\Finder\FilesystemFinder;
 
-final class FinderImpl implements Finder
+final class FilesystemFinderImpl implements FilesystemFinder
 {
+    /**
+     * @param bool|null $sort If true, sort by newest first
+     */
     public function __construct(
         private readonly Source $config,
         private ?\DateTimeInterface $after = null,
+        private ?bool $sort = null,
     ) {}
 
     public function getIterator(): \Traversable
@@ -21,7 +25,12 @@ final class FinderImpl implements Finder
 
     public function after(\DateTimeInterface $date): static
     {
-        return new self($this->config, $date);
+        return new self($this->config, $date, $this->sort);
+    }
+
+    public function oldest(): static
+    {
+        return new self($this->config, $this->after, false);
     }
 
     public function files(): \Traversable
@@ -51,9 +60,9 @@ final class FinderImpl implements Finder
         $finder->exclude(\array_map($this->directoryToPattern(...), $this->config->excludeDir));
         // $finder->exclude($this->config->cacheDir);
 
-        if ($this->after !== null) {
-            $finder->date('> ' . $this->after->format('Y-m-d H:i:s'));
-        }
+        $this->after === null or $finder->date('>= ' . $this->after->format('Y-m-d H:i:s'));
+        // todo direction
+        $this->sort === null or $finder->sortByModifiedTime();
 
         return $finder;
     }

@@ -9,7 +9,7 @@ namespace LLM\Assistant\Module\Finder;
  *
  * @extends \IteratorAggregate<string, \SplFileInfo>
  */
-interface Finder extends \IteratorAggregate
+interface FilesystemFinder extends \IteratorAggregate
 {
     /**
      * @return \Traversable<string, \SplFileInfo>
@@ -17,6 +17,11 @@ interface Finder extends \IteratorAggregate
     public function getIterator(): \Traversable;
 
     public function after(\DateTimeInterface $date): static;
+
+    /**
+     * Sort by modify time, oldest first
+     */
+    public function oldest(): static;
 
     /**
      * @return \Traversable<string, \SplFileInfo>

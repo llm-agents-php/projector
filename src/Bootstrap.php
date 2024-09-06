@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace LLM\Assistant;
 
-use LLM\Assistant\Module\Finder\Finder;
-use LLM\Assistant\Module\Finder\Internal\FinderImpl;
+use LLM\Assistant\Module\Finder\FilesystemFinder;
+use LLM\Assistant\Module\Finder\Internal\FilesystemFinderImpl;
+use LLM\Assistant\Module\Finder\Internal\PromptFinderImpl;
+use LLM\Assistant\Module\Finder\PromptFinder;
 use LLM\Assistant\Service\Cache;
 use LLM\Assistant\Service\Container;
 use LLM\Assistant\Service\Internal\Cache\PsrCache;
@@ -13,12 +15,10 @@ use LLM\Assistant\Service\Internal\Container\ContainerImpl;
 use LLM\Assistant\Service\Internal\Container\Injection\ConfigLoader;
 use LLM\Assistant\Service\Internal\Logger\LoggerImpl;
 use LLM\Assistant\Service\Logger;
-use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\StyleInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Yiisoft\Cache\File\FileCache;
 
 /**
  * Build the container based on the configuration.
@@ -48,7 +48,8 @@ final class Bootstrap
         $c = $this->container;
         unset($this->container);
 
-        $c->bind(Finder::class, FinderImpl::class);
+        $c->bind(FilesystemFinder::class, FilesystemFinderImpl::class);
+        $c->bind(PromptFinder::class, PromptFinderImpl::class);
         $c->bind(Cache::class, PsrCache::class);
 
         return $c;

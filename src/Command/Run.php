@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LLM\Assistant\Command;
 
-use LLM\Assistant\Module\Finder\Finder;
+use LLM\Assistant\Module\Finder\PromptFinder;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -32,11 +32,14 @@ final class Run extends Base
 
         $this->logger->alert('Assistant is running');
 
-        $finder = $this->container->get(Finder::class);
+        $finder = $this->container->get(PromptFinder::class);
 
-        foreach ($finder->files() as $name => $file) {
-            $this->logger->info($name);
-        }
+        #AI test
+        tr($finder->getNext());
+
+        // foreach ($finder->files() as $name => $file) {
+        //     $this->logger->info($name);
+        // }
 
         return Command::SUCCESS;
     }
