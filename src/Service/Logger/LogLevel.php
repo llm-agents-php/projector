@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LLM\Assistant\Service\Logger\Internal;
+namespace LLM\Assistant\Service\Logger;
 
 /**
  * @internal
@@ -38,7 +38,7 @@ enum LogLevel: string
     public function verbosityLevel(): int
     {
         return match ($this) {
-            self::Emergency, self::Error, self::Critical => 0,
+            self::Alert, self::Emergency, self::Error, self::Critical => 0,
             self::Warning => 1,
             self::Info, self::Notice => 2,
             self::Debug => 3,

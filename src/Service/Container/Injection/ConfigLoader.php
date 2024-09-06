@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace LLM\Assistant\Service\Container\Internal\Injection;
+namespace LLM\Assistant\Service\Container\Injection;
 
-use LLM\Assistant\Service\Container\Internal\Attribute\ConfigAttribute;
-use LLM\Assistant\Service\Container\Internal\Attribute\Env;
-use LLM\Assistant\Service\Container\Internal\Attribute\InputArgument;
-use LLM\Assistant\Service\Container\Internal\Attribute\InputOption;
-use LLM\Assistant\Service\Container\Internal\Attribute\PhpIni;
-use LLM\Assistant\Service\Container\Internal\Attribute\XPath;
-use LLM\Assistant\Service\Container\Internal\Attribute\XPathEmbedList;
-use LLM\Assistant\Service\Logger\Logger;
+use LLM\Assistant\Service\Container\Attribute\ConfigAttribute;
+use LLM\Assistant\Service\Container\Attribute\Env;
+use LLM\Assistant\Service\Container\Attribute\InputArgument;
+use LLM\Assistant\Service\Container\Attribute\InputOption;
+use LLM\Assistant\Service\Container\Attribute\PhpIni;
+use LLM\Assistant\Service\Container\Attribute\XPath;
+use LLM\Assistant\Service\Container\Attribute\XPathEmbedList;
+use LLM\Assistant\Service\Logger;
 
 /**
  * @internal

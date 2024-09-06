@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LLM\Assistant\Service\Logger;
+namespace LLM\Assistant\Service;
 
 use Psr\Log\LoggerInterface;
 

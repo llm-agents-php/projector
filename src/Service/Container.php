@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LLM\Assistant\Service\Container;
+namespace LLM\Assistant\Service;
 
 use Psr\Container\ContainerInterface;
 

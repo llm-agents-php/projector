@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LLM\Assistant\Service\Logger\Internal;
+namespace LLM\Assistant\Service\Logger;
 
 use Psr\Log\LoggerTrait;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @internal
  */
-final class LoggerImpl implements \LLM\Assistant\Service\Logger\Logger
+final class LoggerImpl implements \LLM\Assistant\Service\Logger
 {
     use LoggerTrait;
 

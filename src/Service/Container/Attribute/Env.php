@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LLM\Assistant\Service\Container\Internal\Attribute;
+namespace LLM\Assistant\Service\Container\Attribute;
 
 /**
  * @internal

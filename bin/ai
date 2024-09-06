@@ -45,11 +45,10 @@ if ('cli' !== PHP_SAPI) {
     $application = new Application();
     $application->setCommandLoader(
         new FactoryCommandLoader([
-            Command\Get::getDefaultName() => static fn() => new Command\Get(),
-            Command\ListSoftware::getDefaultName() => static fn() => new Command\ListSoftware(),
+            Command\Run::getDefaultName() => static fn() => new Command\Run(),
         ]),
     );
-    $application->setDefaultCommand(Command\Get::getDefaultName(), false);
+    $application->setDefaultCommand(Command\Run::getDefaultName(), false);
     $application->setVersion(Info::version());
     $application->setName(Info::NAME);
     $application->run();
