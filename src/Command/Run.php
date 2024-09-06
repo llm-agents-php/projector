@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LLM\Assistant\Command;
 
+use LLM\Assistant\Module\Finder\Finder;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -31,6 +32,11 @@ final class Run extends Base
 
         $this->logger->alert('Assistant is running');
 
+        $finder = $this->container->get(Finder::class);
+
+        foreach ($finder->files() as $name => $file) {
+            $this->logger->info($name);
+        }
 
         return Command::SUCCESS;
     }

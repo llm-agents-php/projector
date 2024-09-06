@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace LLM\Assistant\Service\Container\Attribute;
 
-use;
-
 /**
  * @internal
  */

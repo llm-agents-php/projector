@@ -23,7 +23,7 @@ abstract class Base extends Command
     public function configure(): void
     {
         parent::configure();
-        $this->addOption('config', null, InputOption::VALUE_OPTIONAL, 'Path to the configuration file');
+        $this->addOption('config', null, InputOption::VALUE_OPTIONAL, 'Path to the configuration file.');
     }
 
     protected function execute(
@@ -31,7 +31,7 @@ abstract class Base extends Command
         OutputInterface $output,
     ): int {
         $this->container = Bootstrap::init($input, $output)->withConfig(
-            // xml: $this->getConfigFile($input),
+            xml: $this->getConfigFile($input),
             inputOptions: $input->getOptions(),
             inputArguments: $input->getArguments(),
             environment: \getenv(),
@@ -49,7 +49,7 @@ abstract class Base extends Command
         /** @var string|null $config */
         $config = $input->getOption('config');
         $isConfigured = $config !== null;
-        $config ??= './dload.xml';
+        $config ??= './ai.xml';
 
         if (\is_file($config)) {
             return $config;

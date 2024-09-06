@@ -7,6 +7,8 @@ namespace LLM\Assistant;
 use LLM\Assistant\Module\Common\Architecture;
 use LLM\Assistant\Module\Common\OperatingSystem;
 use LLM\Assistant\Module\Common\Stability;
+use LLM\Assistant\Module\Finder\Finder;
+use LLM\Assistant\Module\Finder\Internal\FinderImpl;
 use LLM\Assistant\Service\Container;
 use LLM\Assistant\Service\Container\ContainerImpl;
 use LLM\Assistant\Service\Container\Injection\ConfigLoader;
@@ -45,6 +47,8 @@ final class Bootstrap
         $c = $this->container;
         unset($this->container);
 
+        $c->bind(Finder::class, FinderImpl::class);
+
         return $c;
     }
 
@@ -63,12 +67,29 @@ final class Bootstrap
             'inputOptions' => $inputOptions,
         ];
 
+        // XML config file
+        $xml === null or $args['xml'] = $this->readXml($xml);
+
         // Register bindings
         $this->container->bind(ConfigLoader::class, $args);
-        $this->container->bind(Architecture::class);
-        $this->container->bind(OperatingSystem::class);
-        $this->container->bind(Stability::class);
 
         return $this;
+    }
+
+    private function readXml(string $fileOrContent): string
+    {
+        // Load content
+        if (\str_starts_with($fileOrContent, '<?xml')) {
+            $xml = $fileOrContent;
+        } else {
+            \file_exists($fileOrContent) or throw new \InvalidArgumentException('Config file not found.');
+            $xml = \file_get_contents($fileOrContent);
+            $xml === false and throw new \RuntimeException('Failed to read config file.');
+        }
+
+        // Validate Schema
+        // todo
+
+        return $xml;
     }
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- Example -->
+<ai
+    temp-dir="./runtime"
+>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+        <exclude>
+            <directory>tests</directory>
+        </exclude>
+    </source>
+</ai>

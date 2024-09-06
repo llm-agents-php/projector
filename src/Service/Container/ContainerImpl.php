@@ -98,7 +98,7 @@ final class ContainerImpl implements AppContainerInterface, Destroyable
 
         // Detect related types
         // Configs
-        if (\str_starts_with($class, 'Internal\\DLoad\\Module\\Common\\Config\\')) {
+        if (\str_starts_with($class, 'LLM\\Assistant\\Config\\')) {
             // Hydrate config
             /** @var ConfigLoader $configLoader */
             $configLoader = $this->get(ConfigLoader::class);
@@ -113,24 +113,37 @@ final class ContainerImpl implements AppContainerInterface, Destroyable
      *
      * @template T of object
      * @param class-string<T> $id
-     * @param array|\Closure(ContainerImpl): T $binding
+     * @param class-string<T>|null|array|\Closure(ContainerImpl): T $binding
      */
-    public function bind(string $id, \Closure|array|null $binding = null): void
+    public function bind(string $id, \Closure|array|string|null $binding = null): void
     {
-        if ($binding !== null) {
-            $this->factory[$id] = $binding;
+        if ($binding === null) {
+            $this->factory[$id] = $this->getFactory($id) ?? throw new \InvalidArgumentException(
+                "Class `$id` must have a factory or be a factory itself and implement `Factoriable`.",
+            );
             return;
         }
 
-        (\class_exists($id) && \is_a($id, Factoriable::class, true)) or throw new \InvalidArgumentException(
-            "Class `$id` must have a factory or be a factory itself and implement `Factoriable`.",
-        );
+        if (\is_string($binding)) {
+            $this->factory[$id] = $this->getFactory($binding) ?? fn() => $this->make($binding);
+            return;
+        }
 
-        $this->factory[$id] = $id::create(...);
+        $this->factory[$id] = $binding;
     }
 
     public function destroy(): void
     {
         unset($this->cache, $this->factory, $this->injector);
+    }
+
+    /**
+     * @template T
+     * @param class-string<T> $class
+     * @return null|\Closure(): T
+     */
+    private function getFactory(string $class): ?\Closure
+    {
+        return \is_a($class, Factoriable::class, true) ? $class::create(...) : null;
     }
 }
