@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LLM\Assistant\Service;
 
+use LLM\Assistant\Service\Container\ContainerImpl;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -51,7 +52,7 @@ interface Container extends ContainerInterface
      *
      * @template T of object
      * @param class-string<T> $id
-     * @param array|\Closure(Container): T $binding
+     * @param class-string<T>|null|array|\Closure(ContainerImpl): T $binding
      */
-    public function bind(string $id, \Closure|array|null $binding = null): void;
+    public function bind(string $id, \Closure|array|string|null $binding = null): void;
 }

@@ -38,48 +38,23 @@ final class ContainerImpl implements AppContainerInterface, Destroyable
         $this->cache[ContainerInterface::class] = $this;
     }
 
-    /**
-     * @template T of object
-     * @param class-string<T> $id
-     * @param array $arguments Will be used if the object is created for the first time.
-     * @return T
-     *
-     * @psalm-suppress MoreSpecificImplementedParamType, InvalidReturnType
-     */
     public function get(string $id, array $arguments = []): object
     {
         /** @psalm-suppress InvalidReturnStatement */
         return $this->cache[$id] ??= $this->make($id, $arguments);
     }
 
-    /**
-     * @param class-string $id
-     *
-     * @psalm-suppress MoreSpecificImplementedParamType
-     */
     public function has(string $id): bool
     {
         return \array_key_exists($id, $this->cache) || \array_key_exists($id, $this->factory);
     }
 
-    /**
-     * @template T of object
-     * @param T $service
-     * @param class-string<T>|null $id
-     */
     public function set(object $service, ?string $id = null): void
     {
         \assert($id === null || $service instanceof $id, "Service must be instance of {$id}.");
         $this->cache[$id ?? \get_class($service)] = $service;
     }
 
-    /**
-     * Create an object of the specified class without caching.
-     *
-     * @template T
-     * @param class-string<T> $class
-     * @return T
-     */
     public function make(string $class, array $arguments = []): object
     {
         $binding = $this->factory[$class] ?? null;
@@ -108,13 +83,6 @@ final class ContainerImpl implements AppContainerInterface, Destroyable
         return $result;
     }
 
-    /**
-     * Declare a factory or predefined arguments for the specified class.
-     *
-     * @template T of object
-     * @param class-string<T> $id
-     * @param class-string<T>|null|array|\Closure(ContainerImpl): T $binding
-     */
     public function bind(string $id, \Closure|array|string|null $binding = null): void
     {
         if ($binding === null) {
@@ -125,7 +93,7 @@ final class ContainerImpl implements AppContainerInterface, Destroyable
         }
 
         if (\is_string($binding)) {
-            $this->factory[$id] = $this->getFactory($binding) ?? fn() => $this->make($binding);
+            $this->factory[$id] = $this->getFactory($binding) ?? fn(): object => $this->make($binding);
             return;
         }
 
@@ -141,6 +109,7 @@ final class ContainerImpl implements AppContainerInterface, Destroyable
      * @template T
      * @param class-string<T> $class
      * @return null|\Closure(): T
+     * @psalm-suppress all
      */
     private function getFactory(string $class): ?\Closure
     {

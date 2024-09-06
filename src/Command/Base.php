@@ -46,7 +46,7 @@ abstract class Base extends Command
      */
     private function getConfigFile(InputInterface $input): ?string
     {
-        /** @var string|null $config */
+        /** @var non-empty-string|null $config */
         $config = $input->getOption('config');
         $isConfigured = $config !== null;
         $config ??= './ai.xml';

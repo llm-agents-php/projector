@@ -20,16 +20,16 @@ final class LoggerImpl implements \LLM\Assistant\Service\Logger
     private readonly bool $quiet;
 
     public function __construct(
-        private readonly ?OutputInterface $output = null,
+        private readonly OutputInterface $output,
     ) {
         $this->verbosityLevel = match (true) {
-            $output?->isDebug() => 3,
-            $output?->isVeryVerbose() => 2,
-            $output?->isVerbose() => 1,
+            $output->isDebug() => 3,
+            $output->isVeryVerbose() => 2,
+            $output->isVerbose() => 1,
             default => 0,
         };
 
-        $this->quiet = $output?->isQuiet() ?? false;
+        $this->quiet = $output->isQuiet();
     }
 
     public function exception(\Throwable $e, ?string $header = null, bool $important = true): void
@@ -52,18 +52,22 @@ final class LoggerImpl implements \LLM\Assistant\Service\Logger
         $this->log($important ? LogLevel::Error : LogLevel::Info, $r);
     }
 
-    public function log($level, \Stringable|string $message, array $context = []): void
+    public function log(mixed $level, \Stringable|string $message, array $context = []): void
     {
         if ($this->quiet) {
             return;
         }
 
-        $level = LogLevel::tryFrom($level) ?? LogLevel::Info;
+        $level = match (true) {
+            \is_string($level) => LogLevel::tryFrom($level) ?? LogLevel::Info,
+            $level instanceof LogLevel => $level,
+            default => LogLevel::Info
+        };
 
         if ($level->verbosityLevel() > $this->verbosityLevel) {
             return;
         }
 
-        $this->output?->write($level->color() . $message . "\033[0m\n");
+        $this->output->write($level->color() . $message . "\033[0m\n");
     }
 }
