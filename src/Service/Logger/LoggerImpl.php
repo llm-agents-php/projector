@@ -17,6 +17,7 @@ final class LoggerImpl implements \LLM\Assistant\Service\Logger
     use LoggerTrait;
 
     private readonly int $verbosityLevel;
+
     private readonly bool $quiet;
 
     public function __construct(
@@ -61,7 +62,7 @@ final class LoggerImpl implements \LLM\Assistant\Service\Logger
         $level = match (true) {
             \is_string($level) => LogLevel::tryFrom($level) ?? LogLevel::Info,
             $level instanceof LogLevel => $level,
-            default => LogLevel::Info
+            default => LogLevel::Info,
         };
 
         if ($level->verbosityLevel() > $this->verbosityLevel) {

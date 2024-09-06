@@ -17,9 +17,9 @@ final class ArchTest extends TestCase
         );
         $externals = $this->layer()->leave(
             static fn(ObjectDescription $a) => !\str_contains(
-                    $a->name,
-                    '\\Internal\\',
-                ) && $a->name !== Bootstrap::class,
+                $a->name,
+                '\\Internal\\',
+            ) && $a->name !== Bootstrap::class,
         );
 
         $this->assertDoesNotDependOn($externals, $internals);

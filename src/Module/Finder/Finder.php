@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace LLM\Assistant\Module\Finder;
 
-use Traversable;
-
 /**
  * Finds files
  *
@@ -16,7 +14,7 @@ interface Finder extends \IteratorAggregate
     /**
      * @return \Traversable<string, \SplFileInfo>
      */
-    public function getIterator(): Traversable;
+    public function getIterator(): \Traversable;
 
     /**
      * @return \Traversable<string, \SplFileInfo>

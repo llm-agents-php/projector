@@ -6,7 +6,6 @@ namespace LLM\Assistant\Module\Finder\Internal;
 
 use LLM\Assistant\Config\Source;
 use LLM\Assistant\Module\Finder\Finder;
-use Traversable;
 
 final class FinderImpl implements Finder
 {
@@ -26,7 +25,7 @@ final class FinderImpl implements Finder
         // $this->finder->date()
     }
 
-    public function getIterator(): Traversable
+    public function getIterator(): \Traversable
     {
         return $this->finder->getIterator();
     }
