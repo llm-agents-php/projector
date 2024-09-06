@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LLM\Assistant\Service\Logger;
+namespace LLM\Assistant\Service\Internal\Logger;
 
 use Psr\Log\LoggerTrait;
 use Symfony\Component\Console\Output\OutputInterface;

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace LLM\Assistant\Service\Container\Attribute;
+namespace LLM\Assistant\Config\Attribute;
 
 /**
  * @internal
  */
 #[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::IS_REPEATABLE)]
-final class Env implements ConfigAttribute
+final class PhpIni implements ConfigAttribute
 {
     public function __construct(
-        public string $name,
+        public string $option,
     ) {}
 }
