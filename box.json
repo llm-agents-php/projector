@@ -1,5 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/box-project/box/main/res/schema.json",
+    "main": "bin/ai",
     "compactors": [
         "KevinGH\\Box\\Compactor\\Json",
         "KevinGH\\Box\\Compactor\\Php"

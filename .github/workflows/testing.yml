@@ -193,7 +193,7 @@ jobs:
           trust-gpg-keys: '0xC00543248C87FB13,0x033E5F8D801A2F8D,0x2DF45277AEF09A2F'
 
       - name: 🔍 Validate configuration for box-project/box
-        run: .phive/box validate box.json.dist --ansi
+        run: .phive/box validate box.json --ansi
 
       - name: 🤖 Compile ai.phar with box-project/box
         run: .phive/box compile --ansi
