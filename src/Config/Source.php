@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace LLM\Assistant\Config;
 
+use LLM\Assistant\Config\Attribute\InputOption;
+use LLM\Assistant\Config\Attribute\XPath;
+use LLM\Assistant\Config\Attribute\XPathEmbedList;
 use LLM\Assistant\Config\Source\Directory;
 use LLM\Assistant\Config\Source\File;
-use LLM\Assistant\Service\Container\Attribute\InputOption;
-use LLM\Assistant\Service\Container\Attribute\XPathEmbedList;
 
 /**
  * @internal
@@ -20,6 +21,9 @@ final class Source
      */
     #[InputOption('path')]
     public ?string $path = null;
+
+    #[XPath('/ai/@cacheDir')]
+    public string $cacheDir = './runtime/.ai';
 
     /**
      * @var File[]

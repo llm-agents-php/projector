@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- Example -->
 <ai
-    temp-dir="./runtime"
+    cache-dir="./runtime/.ai"
 >
     <source>
         <include>

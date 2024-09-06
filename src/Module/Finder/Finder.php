@@ -16,6 +16,8 @@ interface Finder extends \IteratorAggregate
      */
     public function getIterator(): \Traversable;
 
+    public function after(\DateTimeInterface $date): static;
+
     /**
      * @return \Traversable<string, \SplFileInfo>
      */

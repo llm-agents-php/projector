@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace LLM\Assistant\Service\Container;
+namespace LLM\Assistant\Service\Internal\Container;
 
 use LLM\Assistant\Service\Container as AppContainerInterface;
-use LLM\Assistant\Service\Container\Injection\ConfigLoader;
 use LLM\Assistant\Service\Destroyable;
 use LLM\Assistant\Service\Factoriable;
+use LLM\Assistant\Service\Internal\Container\Injection\ConfigLoader;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Yiisoft\Injector\Injector;

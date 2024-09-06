@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LLM\Assistant\Config\Source;
 
-use LLM\Assistant\Service\Container\Attribute\XPath;
+use LLM\Assistant\Config\Attribute\XPath;
 
 final class File
 {
