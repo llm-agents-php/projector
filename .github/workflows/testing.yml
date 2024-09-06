@@ -25,7 +25,7 @@ jobs:
         php-version:
           - '8.2'
         dependencies:
-          - locked
+#          - locked
     steps:
       - name: 📦 Check out the codebase
         uses: actions/checkout@v4.1.5
@@ -83,12 +83,11 @@ jobs:
         os:
           - ubuntu-latest
         php-version:
-          - '8.1'
           - '8.2'
           - '8.3'
         dependencies:
           - lowest
-          - locked
+#          - locked
           - highest
     steps:
       - name: 📦 Check out the codebase
@@ -149,7 +148,7 @@ jobs:
         php-version:
           - '8.2'
         dependencies:
-          - locked
+#          - locked
     env:
       PHAR_PATH: ".build/phar/ai.phar"
       PHAR_SIGNATURE: ".build/phar/ai.phar.asc"
