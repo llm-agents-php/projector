@@ -29,9 +29,11 @@
     },
     "require-dev": {
         "buggregator/trap": "^1.10",
+        "friendsofphp/php-cs-fixer": "^3.64",
         "phpunit/phpunit": "^10.5",
         "ta-tikoma/phpunit-architecture-test": "^0.8.4",
-        "vimeo/psalm": "^5.25"
+        "vimeo/psalm": "^5.25",
+        "wayofdev/cs-fixer-config": "^1.4"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -49,6 +51,8 @@
         "sort-packages": true
     },
     "scripts": {
+        "cs:diff": "php-cs-fixer fix --dry-run -v --diff",
+        "cs:fix": "php-cs-fixer fix -v",
         "psalm": "psalm",
         "psalm:baseline": "psalm --set-baseline=psalm-baseline.xml",
         "psalm:ci": "psalm --output-format=github --shepherd --show-info=false --stats --threads=4",
