@@ -2,7 +2,7 @@
     "name": "llm/assistant",
     "type": "library",
     "description": "An LLM assistant with a set of tools and agents for refactoring and developing the project's codebase.",
-    "license": "MIT",
+    "license": "BSD-3-Clause",
     "homepage": "https://github.com/llm-agents-php",
     "support": {
         "issues": "https://github.com/llm-agents-php/assistant/issues",
