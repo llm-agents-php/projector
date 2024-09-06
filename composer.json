@@ -21,7 +21,10 @@
     ],
     "require": {
         "php": ">=8.2",
-        "llm-agents/agents": "^1.0"
+        "llm-agents/agents": "^1.0",
+        "psr/container": "^2.0",
+        "psr/log": "^3.0.1",
+        "psr/simple-cache": "^3.0"
     },
     "require-dev": {
         "buggregator/trap": "^1.10",
