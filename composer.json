@@ -30,6 +30,7 @@
     "require-dev": {
         "buggregator/trap": "^1.10",
         "phpunit/phpunit": "^10.5",
+        "ta-tikoma/phpunit-architecture-test": "^0.8.4",
         "vimeo/psalm": "^5.25"
     },
     "minimum-stability": "dev",
@@ -54,6 +55,14 @@
         "test": [
             "@putenv XDEBUG_MODE=coverage",
             "phpunit --color=always"
+        ],
+        "test:arch": [
+            "@putenv XDEBUG_MODE=coverage",
+            "phpunit --color=always --testsuite=Arch"
+        ],
+        "test:unit": [
+            "@putenv XDEBUG_MODE=coverage",
+            "phpunit --color=always --testsuite=Unit"
         ],
         "test:cc": [
             "@putenv XDEBUG_MODE=coverage",
