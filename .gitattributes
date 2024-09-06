@@ -10,6 +10,7 @@ phpunit.xml*           export-ignore
 pest.xml*              export-ignore
 psalm.*                export-ignore
 psalm-baseline.xml     export-ignore
-dload.xml              export-ignore
+box.json*              export-ignore
+ai.xml                 export-ignore
 infection.*            export-ignore
 codecov.*              export-ignore

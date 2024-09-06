@@ -21,12 +21,19 @@
     ],
     "require": {
         "php": ">=8.2",
-        "llm-agents/agents": "^1.0"
+        "llm-agents/agents": "^1.0",
+        "psr/container": "^2.0",
+        "psr/log": "^3.0.1",
+        "psr/simple-cache": "^3.0",
+        "symfony/finder": "^7.1"
     },
     "require-dev": {
         "buggregator/trap": "^1.10",
+        "friendsofphp/php-cs-fixer": "^3.64",
         "phpunit/phpunit": "^10.5",
-        "vimeo/psalm": "^5.25"
+        "ta-tikoma/phpunit-architecture-test": "^0.8.4",
+        "vimeo/psalm": "^5.25",
+        "wayofdev/cs-fixer-config": "^1.4"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -44,12 +51,22 @@
         "sort-packages": true
     },
     "scripts": {
+        "cs:diff": "php-cs-fixer fix --dry-run -v --diff",
+        "cs:fix": "php-cs-fixer fix -v",
         "psalm": "psalm",
         "psalm:baseline": "psalm --set-baseline=psalm-baseline.xml",
         "psalm:ci": "psalm --output-format=github --shepherd --show-info=false --stats --threads=4",
         "test": [
             "@putenv XDEBUG_MODE=coverage",
             "phpunit --color=always"
+        ],
+        "test:arch": [
+            "@putenv XDEBUG_MODE=coverage",
+            "phpunit --color=always --testsuite=Arch"
+        ],
+        "test:unit": [
+            "@putenv XDEBUG_MODE=coverage",
+            "phpunit --color=always --testsuite=Unit"
         ],
         "test:cc": [
             "@putenv XDEBUG_MODE=coverage",

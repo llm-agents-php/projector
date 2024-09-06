@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.25.0@01a8eb06b9e9cc6cfb6a320bf9fb14331919d505">
+  <file src="src/Service/Container/ContainerImpl.php">
+    <InvalidReturnType>
+      <code><![CDATA[object]]></code>
+    </InvalidReturnType>
+  </file>
+  <file src="src/Service/Container/Injection/ConfigLoader.php">
+    <MixedMethodCall>
+      <code><![CDATA[new $attribute->class()]]></code>
+    </MixedMethodCall>
+    <RedundantCondition>
+      <code><![CDATA[\assert($xml instanceof \SimpleXMLElement)]]></code>
+    </RedundantCondition>
+  </file>
+  <file src="src/Service/Factoriable.php">
+    <InvalidDocblock>
+      <code><![CDATA[Factoriable]]></code>
+    </InvalidDocblock>
+  </file>
+</files>
