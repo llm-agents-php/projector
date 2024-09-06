@@ -151,8 +151,8 @@ jobs:
         dependencies:
           - locked
     env:
-      DLOAD_PHAR: ".build/phar/dload.phar"
-      DLOAD_PHAR_SIGNATURE: ".build/phar/dload.phar.asc"
+      PHAR_PATH: ".build/phar/ai.phar"
+      PHAR_SIGNATURE: ".build/phar/ai.phar.asc"
     steps:
       - name: 📦 Check out the codebase
         uses: actions/checkout@v4.1.5
@@ -196,11 +196,11 @@ jobs:
       - name: 🔍 Validate configuration for box-project/box
         run: .phive/box validate box.json.dist --ansi
 
-      - name: 🤖 Compile dload.phar with box-project/box
+      - name: 🤖 Compile ai.phar with box-project/box
         run: .phive/box compile --ansi
 
-      - name: 💥 Show info about dload.phar with box-project/box
-        run: .phive/box info ${{ env.DLOAD_PHAR }} --ansi
+      - name: 💥 Show info about ai.phar with box-project/box
+        run: .phive/box info ${{ env.PHAR_PATH }} --ansi
 
-      - name: 🤔 Run dload.phar help command
-        run: ${{ env.DLOAD_PHAR }} --help
+      - name: 🤔 Run ai.phar help command
+        run: ${{ env.PHAR_PATH }} --help
