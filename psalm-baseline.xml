@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="5.25.0@01a8eb06b9e9cc6cfb6a320bf9fb14331919d505">
-  <file src="src/Service/Container/ContainerImpl.php">
+  <file src="src/Module/Finder/Internal/PromptFinderImpl.php">
+    <MixedInferredReturnType>
+      <code><![CDATA[PromptCache]]></code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->cache->get(self::CACHE_KEY) ?? new PromptCache()]]></code>
+      <code><![CDATA[$this->cache->get(self::CACHE_KEY) ?? new PromptCache()]]></code>
+    </MixedReturnStatement>
+  </file>
+  <file src="src/Service/Factoriable.php">
+    <InvalidDocblock>
+      <code><![CDATA[Factoriable]]></code>
+    </InvalidDocblock>
+  </file>
+  <file src="src/Service/Internal/Cache/PsrCache.php">
+    <MixedAssignment>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+  </file>
+  <file src="src/Service/Internal/Container/ContainerImpl.php">
     <InvalidReturnType>
       <code><![CDATA[object]]></code>
     </InvalidReturnType>
   </file>
-  <file src="src/Service/Container/Injection/ConfigLoader.php">
+  <file src="src/Service/Internal/Container/Injection/ConfigLoader.php">
     <MixedMethodCall>
       <code><![CDATA[new $attribute->class()]]></code>
     </MixedMethodCall>
     <RedundantCondition>
       <code><![CDATA[\assert($xml instanceof \SimpleXMLElement)]]></code>
     </RedundantCondition>
-  </file>
-  <file src="src/Service/Factoriable.php">
-    <InvalidDocblock>
-      <code><![CDATA[Factoriable]]></code>
-    </InvalidDocblock>
   </file>
 </files>
