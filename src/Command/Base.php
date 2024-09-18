@@ -18,7 +18,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 abstract class Base extends Command
 {
     protected Logger $logger;
-
     protected Container $container;
 
     public function configure(): void

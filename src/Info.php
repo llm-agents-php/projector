@@ -10,11 +10,8 @@ namespace LLM\Assistant;
 class Info
 {
     public const NAME = 'AI Assistant';
-
     public const LOGO_CLI_COLOR = '';
-
     public const ROOT_DIR = __DIR__ . '/..';
-
     private const VERSION = 'experimental';
 
     /**

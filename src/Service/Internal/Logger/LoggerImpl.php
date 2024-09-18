@@ -17,7 +17,6 @@ final class LoggerImpl implements \LLM\Assistant\Service\Logger
     use LoggerTrait;
 
     private readonly int $verbosityLevel;
-
     private readonly bool $quiet;
 
     public function __construct(
