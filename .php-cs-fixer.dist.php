@@ -1,19 +1,8 @@
-<?php
-
-declare(strict_types=1);
-
-use WayOfDev\PhpCsFixer\Config\ConfigBuilder;
-use WayOfDev\PhpCsFixer\Config\RuleSets\ExtendedPERSet;
+<?php declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
-$config = ConfigBuilder::createFromRuleSet(new ExtendedPERSet())
-    ->inDir(__DIR__ . '/bin')
-    ->inDir(__DIR__ . '/src')
-    ->inDir(__DIR__ . '/tests')
-    ->addFiles([__FILE__])
-    ->getConfig();
-
-$config->setCacheFile(__DIR__ . '/runtime/php-cs-fixer/php-cs-fixer.cache');
-
-return $config;
+return \Spiral\CodeStyle\Builder::create()
+    ->include(__DIR__ . '/src')
+    ->include(__FILE__)
+    ->build();

@@ -33,9 +33,9 @@
         "buggregator/trap": "^1.10",
         "friendsofphp/php-cs-fixer": "^3.64",
         "phpunit/phpunit": "^10.5",
+        "spiral/code-style": "^2.0",
         "ta-tikoma/phpunit-architecture-test": "^0.8.4",
-        "vimeo/psalm": "^5.25",
-        "wayofdev/cs-fixer-config": "^1.4"
+        "vimeo/psalm": "^5.25"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
